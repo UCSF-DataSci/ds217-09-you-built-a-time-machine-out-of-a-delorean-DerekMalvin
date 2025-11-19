@@ -1,0 +1,32 @@
+
+TODO: Document your timezone operations:
+
+- What timezone was your original data in? 
+The original timezone information was not included and instead was showing as a calendar data (ex. '2023-01-01). 
+
+- How did you localize the data?
+I localized the data to UTC through the use of tz_localize('UTC'). This changes the original date format, which didn't account 
+for time, to now account for time. On top of that, it now accounts for it in UTC.
+
+- What timezone did you convert to?
+After localizing the data to UTC, I converted the time to US/Eastern timezone via tz_convert('US/Eastern').
+
+- What issues did you encounter with DST? (Note: Using UTC avoids DST ambiguity)
+Using the UTC avoids all of the DST issues such as observing daylight savings time and so as a result, there is no "spring forward" or "fall back" that can cause issues of duplication in the future. 
+
+- Include at least one example showing a datetime before and after conversion
+Current: 
+UTC: {utc_time} 
+Eastern: {eastern_time}
+
+After Changing:
+Original:{patient_vitals.index[0]}
+UTC Localized: {patient_vitals_tz.index[0]}
+Eastern: {patient_vitals_tz_eastern.index[0]}
+
+- Explain why UTC is recommended as the base timezone for storing temporal data
+UTC is the recommendation for the base timezone for storing temporal data for a few reasons. The first
+reason is that UTC does not take into account for daylight savings time transitions, which takes away the 
+difficulties that come with having to convert these times. The second reason why it is recommended is beacause 
+it provides a single, consistent reference point for all countries in the world to follow. This way, data collected
+from New York, Tokyo, or London will not have to worry about converting all of these into one, since it does it already.

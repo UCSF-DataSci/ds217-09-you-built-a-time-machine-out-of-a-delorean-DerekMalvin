@@ -1,0 +1,71 @@
+
+TODO: Document your missing data handling:
+- How many missing values did you find?
+There was a total of 323 missing values.
+
+- What percentage of data was missing?
+Approximately 96.4 percent of the data was found to be missing.
+
+- Which method did you use to fill missing values?
+The method that I used is the time-based linear interpolation using the interpolate(method='time') 
+method to fill the missing values.
+
+- Why did you choose that method?
+I chose the time-based interpolation method because it is the most appropriate method for this healthcare 
+temperature data. One of the main reasons why I chose this is because body temperature is a biological
+measurement that changes gradually over time rather than a sudden spike. Time-based interpolation allows for
+a smooth transitions between monthly values and that also is a good representation of how the body temperature
+behaves. I also chose this because it keeps the trends true and accurate without having to introduce any artificial
+data that could disrupt the analysis.
+
+
+- What are the pros/cons of your approach?
+There are a few pros and cons that come with using the time-based interpolation method. The first pro that 
+I want to note is that it gives a smooth set of numbers that doesn't have any random jumps in it. As a result,
+it is much easier to visualize and understand. The second pro is that it feels much more realistic for body
+temperature.This is because temperature typically doesn't spike up or down drastically in the span of a day. 
+The first con that I have for this approach is that it will assume that everything changes linearly. The second con
+that I have for this approach is that it can't guess for anything that is outside of the existing timeframe. For
+example, it will not be able to tell me what happened before the first measurement and what will happen after the
+last measurement.
+
+- Include examples showing missing data patterns
+Before imputation:
+- Jan 31: 98.77700042532152°F (observed)
+- Feb 15: NaN (missing)
+- Feb 28: 99.00128654847495°F (observed)
+
+After time-based interpolation:
+- Jan 31: 98.77700042532152°F (original)
+- Feb 15: 98.89715370558228°F (imputed)
+- Feb 28: 99.00128654847495°F (original)
+
+
+
+Missing patterns:
+Missing by month:
+date
+1      0
+2     27
+3     30
+4     29
+5     30
+6     29
+7     30
+8     30
+9     29
+10    30
+11    29
+12    30
+Name: temperature, dtype: int64
+
+Missing by day of week:
+date
+0    46
+1    45
+2    47
+3    46
+4    46
+5    47
+6    46
+Name: temperature, dtype: int64
